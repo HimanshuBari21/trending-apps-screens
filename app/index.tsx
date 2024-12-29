@@ -1,15 +1,27 @@
-import { Text, View } from "react-native";
+import { Link } from "expo-router";
+import { FlatList } from "react-native";
+
+const pages: { key: string; link: "/x" | "/food-app" }[] = [
+  {
+    key: "Food App",
+    link: "/food-app",
+  },
+  {
+    key: "X",
+    link: "/x",
+  },
+];
 
 export default function Index() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
-    </View>
+    <FlatList
+      className="w-full p-4"
+      data={pages}
+      renderItem={({ item }) => (
+        <Link className="text-4xl mt-4" href={item.link}>
+          {item.key}
+        </Link>
+      )}
+    ></FlatList>
   );
 }
